@@ -64,13 +64,70 @@ def  user_profile(request, username):
 @login_required(login_url='login') 
 def  edit_profile(request, username):
     user = User.objects.get(username=username)
-    if request.method == 'POST':    
+    if request.method == 'POST': 
+        user_form = UpdateUserForm(request.POST, instance=request.user)
+        prof_form = UpdateUserProfileForm(request.POST, request. FILES,instance=request.user.profile)
+        if user_form.is_valid() and prof_form.is_valid:
+            user_form.save()
+            prof_form.save()
+            return redirect('profile',user.usernme)
         
-       return render(request, 'editprofile.html',)
-   
+    else:
+        user_form = UpdateUserForm(instance=request.user)
+        prof_form = UpdateProfileForm(instance=request.user.profile)
+        
+    context = {
+        'user_form': user_form,
+        'prof_form': prof_form,
+    }         
+        
+    return render(request, 'editprofile.html',context)
+ 
+ 
+@login_required(login_url='login')  
 def  projectView(request,post):
     post =Post.objects.get(title=post)
-    return render(request, 'project.html',)
+    ratings = Rating.objects.filter(user=request.user,post=post).first()
+    rating_status = None
+    if rating is None:
+        rating_status = False
+        
+    else:
+        rating_status = True
+        
+    if request.method == 'POST':
+        form = RatingForm(request.POST) 
+        if form.is_valid():
+            rate = form.save(commit =False)
+            rate.user = request.user
+            rate.post = post
+            rate.save()
+            post_ratings = Rating.objects.filter(post=post)
+            
+            design_ratings = [des.design for des in post_ratings]
+            design_average = sum(design_ratings) / len(design_ratings)
+
+            usability_ratings = [usa.usability for usa in post_ratings]
+            usability_average = sum(usability_ratings) / len(usability_ratings)
+
+            content_ratings = [content.content for content in post_ratings]
+            content_average = sum(content_ratings) / len(content_ratings)
+
+            rate.design_average = round(design_average, 2)
+            rate.usability_average = round(usability_average, 2)
+            rate.content_average = round(content_average, 2)
+            rate.save()
+            return HttpResponseRedirect(request.path_info)
+    
+    else:
+        form = RatingForm()
+    context = {
+        'post':post,
+        'rating_status':rating_status,
+        'rating_form':form,
+    }       
+           
+    return render(request, 'project.html',context)
 
 def  search_project(request):
     if request.method == 'GET':
