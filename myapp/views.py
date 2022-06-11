@@ -22,9 +22,9 @@ def  index(request):
         form = PostForm()      
     try:
         posts = Post.objects.all()
+        
         random_post = []
-        for post in posts: 
-         random_Post = Random.objects.all()
+        for post in posts: random_Post = Random.objects.all()
               
     except Post.DoesNotExist:
         posts=None
