@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'myapp',
     'pyuploadcare.dj',
+    'bootstrap5',
 ]
 
 UPLOADCARE = {
