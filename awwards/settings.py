@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'myapp',
     'pyuploadcare.dj',
     'bootstrap5',
+    'crispy_forms',             
 ]
 
 UPLOADCARE = {
@@ -76,6 +77,8 @@ TEMPLATES = [
         },
     },
 ]
+
+CRISPY_TEMPLATE_PACK = 'uni_form'
 
 WSGI_APPLICATION = 'awwards.wsgi.application'
 
