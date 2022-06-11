@@ -4,7 +4,7 @@ from .forms import SignupForm,PostForm,UpdateUserForm,UpdateUserProfileForm,Rati
 from .models import Profile,Post,Rating
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate,logout
 import random
 
 
@@ -144,6 +144,10 @@ def  search_project(request):
         
     return render(request, 'results.html', {'messsage': messages})   
       
+
+def logout_user(request):
+    logout(request)
+    return redirect('index')          
     
     
         
