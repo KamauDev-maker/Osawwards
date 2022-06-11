@@ -1,7 +1,10 @@
 from django import forms
 from django.contrib.auth.models import User
-from django.contrrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm
 from .models import Post,Profile,Rating
+from pyuploadcare.dj.forms import ImageField
+
+
 
 class SignupForm(UserCreationForm):
     email = forms.EmailField(max_length=255,help_text="Required .Email address")
@@ -11,14 +14,14 @@ class SignupForm(UserCreationForm):
         fields = ('email', 'username', 'password')
         
 class PostForm(forms.ModelForm):
-    image =Imagefield(labe='')
+    image =ImageField(label='')
     
     class Meta:
         model = Post
         fields = ('image', 'title', 'description', 'url','technologies')
         
 class UpdateUserForm(forms.ModelForm):
-      email = models.EmailField(max_length=255,help_text="Email address")
+      email = forms.EmailField(max_length=255,help_text="Email address")
       
       class Meta:
           model = User
@@ -26,8 +29,8 @@ class UpdateUserForm(forms.ModelForm):
           
 class UpdateUserProfileForm(forms.ModelForm):
     class Meta:
-        model = User
-        fields = ('name', 'location', 'profile_image','bio','email')    
+        model = Profile
+        fields = ('profile_image', 'bio', 'name','email','location')    
         
                 
 class RatingForm(forms.ModelForm):

@@ -38,7 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'myapp',
+    'pyuploadcare.dj',
 ]
+
+UPLOADCARE = {
+    'pub_key':'87f0d1dd317fe539d1705ddc',
+    'secret': '',
+}
 
 
 
