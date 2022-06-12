@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'myapp',
     'bootstrap5',
     'pyuploadcare.dj',
-    'crispy_forms',             
+    'crispy_forms',  
+    'rest_framework',           
 ]
 
 UPLOADCARE = {
@@ -140,9 +141,7 @@ MEDIA_ROOT = BASE_DIR / 'static/'
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-LOGIN_REDIRECT_URL = 'index'
 
-LOGOUT_REDIRECT_URL = 'index'
 
 
 
@@ -150,3 +149,15 @@ LOGOUT_REDIRECT_URL = 'index'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_REDIRECT_URL = 'index'
+
+LOGOUT_REDIRECT_URL = 'index'
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
