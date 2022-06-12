@@ -31,6 +31,10 @@ def  index(request):
 
     return render(request, 'index.html', {'posts': posts,'form': form,'random_post': random_post})
 
+
+
+
+
 def  signup(request):
     if request.method == 'POST':    
         form = SignupForm(request.POST)
