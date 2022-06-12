@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Profile,Post
-from django.cintrib.auth.models import UserCreationForm
+from django.contrib.auth.models import UserCreationForm
 
 class ProfileSerializer(serializers.ModelSerializer):
     
