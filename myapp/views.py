@@ -86,7 +86,7 @@ def  edit_profile(request, username):
 @login_required(login_url='login')  
 def  projectView(request,post):
     post =Post.objects.get(title=post)
-    ratings = Rating.objects.filter(user=request.user,post=post).first()
+    rating = Rating.objects.filter(user=request.user,post=post).first()
     rating_status = None
     if rating is None:
         rating_status = False

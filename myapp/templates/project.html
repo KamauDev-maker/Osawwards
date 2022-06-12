@@ -39,21 +39,20 @@
         <div class="card-body">
             <h5 class="card-title"><strong>{{post.title|title}}</strong>
                 <a href="{{ post.url }}" style="float:right" class="btn btn-sm btn-info mr-4"> Visit </a></h5>
-            <p>by <span><a href="{% url 'userprofile' post.user.username %}" id="usern" class="mr-2">{{ post.user.username|title }}</a></span>({{post.user.profile.location}})
+            <p>by <span><a href="{% url 'user_profile' post.user.username %}" id="usern" class="mr-2">{{ post.user.username|title }}</a></span>({{post.user.profile.location}})
             </p>
             <p>{{ post.description }}</p>
             <hr>
-            <p class="card-text "><img src="{{post.user.profile.profile_picture.url}}" class="nav-img mr-2" alt="">
+            <p class="card-text "><img src="{{post.user.profile.profile_image.url}}" class="nav-img mr-2" alt="">
                 By {{post.user.username|title}} <span style="float:right">{{post.date|date}}</span>
             </p>
             <div class="row">
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
-                    <h3 class="D-block mx-auto">Ratings Scores</h3>
+                    <h3 class="D-block mx-auto">Ratings Average</h3>
                     {% for rating in post.ratings.all %}
                     {% if forloop.counter is post.ratings.all.count %}
-                    <a class="btn btn-info btn-sm" ><h5>{{ rating.score }}</h5>
-                        <span class="sc">Average Score</span>
+                    
                     </a>
                     <a class="btn btn-outline-success btn-sm" ><h5>{{ rating.design_average }}</h5>
                         <span class="sc">Design Average</span>

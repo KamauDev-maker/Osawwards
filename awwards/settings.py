@@ -38,8 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'myapp',
-    'pyuploadcare.dj',
     'bootstrap5',
+    'pyuploadcare.dj',
     'crispy_forms',             
 ]
 
