@@ -10,7 +10,7 @@ from pyuploadcare.dj.models import ImageField
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    user = models.OneToOneField(User, default=None, null=True,on_delete=models.CASCADE, related_name='profile')
     profile_image = models.ImageField(upload_to='images/', default='images/default.png',blank=True)
     bio = models.TextField(max_length=500, blank=True)
     name = models.CharField(max_length=255, blank=True)
@@ -37,7 +37,7 @@ class Post(models.Model):
     description = models.TextField(max_length=255)
     url = models.URLField(max_length=255)
     image = models.ImageField(default='default.png', upload_to='post_images')
-    user = models.ForeignKey(User, on_delete=models.CASCADE,related_name='posts')
+    user = models.ForeignKey(User,default=None,null=True, on_delete=models.CASCADE,related_name='posts')
     date = models.DateField(auto_now_add=True)
     
     def __str__(self):
