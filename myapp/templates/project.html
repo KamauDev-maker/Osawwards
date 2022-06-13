@@ -6,9 +6,9 @@
             id="heart"> <i class="fas fa-heart"></i></span></h5>
 
     <div class="card">
-        <div class="view overlay" style="background-image:url()">
+        <div class="view overlay">
             <img class="card-img-top" style="visibility:hidden" width="100%"
-                 src="{{ post.photo.cdn_url }}-/crop/1440x720/center/-/quality/lightest/" alt="{{photo.title}}">
+                 src="{{ post.image.url}}-/crop/1440x720/center/-/quality/lightest/" alt="{{photo.title}}">
             <a href="">
                 <div class="mask rgba-black-slight">
                     <div class="container">
@@ -49,10 +49,11 @@
             <div class="row">
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
-                    <h3 class="D-block mx-auto">Ratings Average</h3>
+                    <h3 class="D-block mx-auto">Ratings Scores</h3>
                     {% for rating in post.ratings.all %}
                     {% if forloop.counter is post.ratings.all.count %}
-                    
+                    <a class="btn btn-info btn-sm" ><h5>{{ rating.score }}</h5>
+                        <span class="sc">Average Score</span>
                     </a>
                     <a class="btn btn-outline-success btn-sm" ><h5>{{ rating.design_average }}</h5>
                         <span class="sc">Design Average</span>

@@ -6,7 +6,7 @@ from .models import Profile,Post,Rating
 from .serializers import ProfileSerializer,UserSerializer,PostSerializer
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
-from django.contrib.auth import login, authenticate,logout
+from django.contrib.auth import login, authenticate
 import random
 
 
@@ -84,11 +84,11 @@ def  edit_profile(request, username):
         if user_form.is_valid() and prof_form.is_valid:
             user_form.save()
             prof_form.save(commit=False)
-            return redirect('profile',user.usernme)
+            return redirect('profile',user.username)
         
     else:
         user_form = UpdateUserForm(instance=request.user)
-        prof_form = UpdateProfileForm(instance=request.user.profile)
+        prof_form = UpdateUserProfileForm(instance=request.user.profile)
         
     context = {
         'user_form': user_form,
@@ -160,9 +160,6 @@ def  search_project(request):
     return render(request, 'results.html', {'messsage': messages})   
       
 
-def logout_user(request):
-    logout(request)
-    return redirect('index')          
-    
+
     
         

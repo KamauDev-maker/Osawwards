@@ -36,8 +36,7 @@ class Post(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField(max_length=255)
     url = models.URLField(max_length=255)
-    Image = models.ImageField()
-    technologies = models.CharField(max_length=255, blank=True )
+    image = models.ImageField(default='default.png', upload_to='post_images')
     user = models.ForeignKey(User, on_delete=models.CASCADE,related_name='posts')
     date = models.DateField(auto_now_add=True)
     

@@ -45,7 +45,7 @@ INSTALLED_APPS = [
 ]
 
 UPLOADCARE = {
-    'pub_key':'87f0d1dd317fe539d1705ddc',
+    'pub_key':'1d111b4d2405fb153a7c',
     'secret': '',
 }
 

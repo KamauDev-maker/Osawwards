@@ -18,7 +18,7 @@ class PostForm(forms.ModelForm):
     
     class Meta:
         model = Post
-        fields = ('image', 'title', 'description', 'url','technologies')
+        fields = ('image', 'title', 'description', 'url',)
         
 class UpdateUserForm(forms.ModelForm):
       email = forms.EmailField(max_length=255,help_text="Email address")

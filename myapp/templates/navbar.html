@@ -1,9 +1,9 @@
 {% load crispy_forms_tags %}
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar" id="nbar">
     <div class="container">
-        <a class="navbar-brand" href="{% url 'index' %}"> <strong class="mr-4 brand">OSAwwards</strong></a>
+        <a class="navbar-brand" href="{% url 'index' %}"> <strong class="mr-4 brand"> OsAwwards</strong></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -12,7 +12,8 @@
                     <form class="form-inline" method="get" action="{% url 'search' %}">
                         {% csrf_token %}
                         <div class="md-form my-0">
-                            <input class="form-control mr-sm-2 " type="text" placeholder="Search" name="title" aria-label="Search">
+                            <input class="form-control mr-sm-2 " type="text" placeholder="Search" name="title"
+                                aria-label="Search">
                         </div>
                     </form>
                 </li>
@@ -20,28 +21,53 @@
 
             <ul class="navbar-nav navbar-right">
                 {% if user.is_authenticated%}
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                       aria-haspopup="true"
-                       aria-expanded="false">{{ user.username|title }} <img class="rounded-circle nav-img" src="{{ user.profile.profile_image.url }}"alt="">
+                <div class="nav-item dropdown ">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      {{user.username|title}}
+                      <img class="rounded-circle nav-img"src="{{user.profile.profile_image.url}}" alt="">
                     </a>
-                    <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item text-center" href="{% url 'profile' user.username %}">Profile</a>
-                        <hr>
-                        <a class="dropdown-item text-center" href="{% url 'edit' user.username  %}"> Edit profile</a>
-                        <hr>
-                        <a href="{% url 'logout' %}" class="text-secondary text-center dropdown-item">Log Out</a>
-
-
-                    </div>
-                </li>        
+                  
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                      <li><a class="dropdown-item" href="{% url 'profile' user.username %}">Profile</a></li>
+                      <li><a class="dropdown-item" href="{% url 'edit' user.username %}">Edit profile</a></li>
+                      <li><a class="dropdown-item" href="{% url 'logout'%}">Logout</a></li>
+                    </ul>
+                  </div>
                 {% else %}
-                <a href="{% url 'login' %}" class="login btn btn-sm btn-info"> REGISTER/LOGIN </a>
+                <a href="{% url 'login' %}" class="login btn btn-sm btn-info "> REGISTER/LOGIN </a>
                 {% endif %}
-                <button class="btn btn-info btn-sm" id="site" data-toggle="modal" data-target="bd-example-modal-xl">
-                    Submit your site
-            
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Submit your project
+
+                </button>
+  
             </ul>
         </div>
     </div>
 </nav>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Upload a project</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-danger btn-sm" data-bs-dismiss="modal">Close</button>
+                    <input type="submit"  class="btn btn-sm btn-info" value= "Save changes">
+                  </div>
+            </form>
+          
+        </div>
+       
+      </div>
+    </div>
+  </div>
