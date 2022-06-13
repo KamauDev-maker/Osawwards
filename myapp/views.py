@@ -61,10 +61,10 @@ def  signup(request):
     return render(request, 'registration/signup.html', {'form': form})    
         
 
-@login_required(login_url='login')   
-def  profile(request,username):
+@login_required(login_url='login')
+def profile(request, username):
     return render(request, 'profile.html')
-        
+
 @login_required(login_url='login')   
 def  user_profile(request, username):
     user_prof = get_object_or_404(User, username=username)
@@ -83,7 +83,7 @@ def  edit_profile(request, username):
         prof_form = UpdateUserProfileForm(request.POST, request. FILES,instance=request.user.profile)
         if user_form.is_valid() and prof_form.is_valid:
             user_form.save()
-            prof_form.save()
+            prof_form.save(commit=False)
             return redirect('profile',user.usernme)
         
     else:
@@ -146,7 +146,7 @@ def  projectView(request,post):
 def  search_project(request):
     if request.method == 'GET':
         title = request.GET.get('title')
-        results = Post.objects.filter(title_icontains=title).all()
+        results = Post.objects.filter(title__icontains=title).all()
         print(results)
         message = f'name'
         context = {

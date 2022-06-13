@@ -11,7 +11,7 @@ from pyuploadcare.dj.models import ImageField
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
-    profile_image = models.ImageField(upload_to='images/', default='images/default.png')
+    profile_image = models.ImageField(upload_to='images/', default='images/default.png',blank=True)
     bio = models.TextField(max_length=500, blank=True)
     name = models.CharField(max_length=255, blank=True)
     email = models.EmailField(max_length=255, blank=True) 

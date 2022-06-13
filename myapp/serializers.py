@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Profile,Post
-from django.contrib.auth.models import UserCreationForm
+from django.contrib.auth.models import User
 
 class ProfileSerializer(serializers.ModelSerializer):
     
@@ -13,7 +13,7 @@ class PostSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Post
-        fields = ('id','title','description','url','technologies','image')
+        fields = ('id','title','description','url','technologies')
         
         
 class UserSerializer(serializers.ModelSerializer):
