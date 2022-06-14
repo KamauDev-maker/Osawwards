@@ -17,6 +17,9 @@
 * Search for projects 
 * View my profile page
 
+## Api Link
+http://127.0.0.1:8000/api/
+
 
 ## Setup/Installation Requirements
 To get the code..
