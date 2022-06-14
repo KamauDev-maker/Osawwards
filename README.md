@@ -19,7 +19,7 @@
 * View my profile page
 
 ## Api Link
-http://127.0.0.1:8000/api/
+http://127.0.0.1:8000/api/  -NB To view the api endpoint user must be logged in.
 
 
 ## Setup/Installation Requirements
