@@ -8,7 +8,8 @@
 >This project allows users to post their projects for other users to rate according to design, usability and content.
 
 ## Live Link
->click view site to visit site on the app
+> Click [Visit Site](https://awwards2030.herokuapp.com/ "Visit Site") on the app
+
 
 ## User Story
 * View posted projects and their details
